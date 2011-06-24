@@ -1,5 +1,6 @@
 class Session < ActiveRecord::Base
   attr_accessor :email, :password, :validation_code
+  attr_accessible :email, :password, :ip_address, :user_agent, :client_id, :login_count, :authenticated_at, :finished_at
   
   validates_uniqueness_of :client_id, :scope => :user_id
   belongs_to :user
