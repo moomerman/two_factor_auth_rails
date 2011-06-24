@@ -1,0 +1,7 @@
+<h1>Sign Up</h1>
+
+<%= form_for @user do %>
+  <div><label>Email:</label><%= text_field_tag :email %></div>
+  <div><label>Password:</label><%= password_field_tag :password %></div>
+  <div><%= submit_tag 'Sign up' %> or <%= link_to 'Log in', :new_session %></div>
+<% end %>

@@ -1,0 +1,7 @@
+<h1>Log In</h1>
+
+<%= form_for @session do |f| %>
+  <div><label>Email:</label><%= f.text_field :email %></div>
+  <div><label>Password:</label><%= f.password_field :password %></div>
+  <div><%= f.submit 'Log in' %> or <%= link_to 'Sign up', :new_user %></div>
+<% end %>

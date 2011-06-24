@@ -1,0 +1,39 @@
+<p>This session is validated.  Try logging in from another device/browser</p>
+<% if session[:first_visit] %>
+  <p>This session was automatically marked as valid because you signed up in this session</p>
+<% end %>
+
+<%= image_tag 'http://images.icanhascheezburger.com/completestore/2009/1/17/128766786890208181.jpg' %>
+
+<h2>Sessions</h2>
+
+<style type="text/css">
+  table {width:100%;}
+  th {text-align:left;}
+  .red {color:red;}
+</style>
+
+<table>
+  <tr>
+    <th>Client</th>
+    <th>Client ID</th>
+    <th>IP Address</th>
+    <th>Confirmed?</th>
+    <th>Authenticated</th>
+    <th>Count</th>
+    <th>Failure</th>
+    <th>&nbsp;</th>
+  </tr>
+<% current_user.sessions.each do |c| %>
+  <tr>
+    <td><strong><%= c.device %>/<%= c.browser %></strong></td>
+    <td><%= c.client_id[0..9] %></td>
+    <td><%= c.ip_address %></td>
+    <td><%= c.confirmed? %></td>
+    <td><%= c.authenticated_at %></td>
+    <td><%= c.login_count %></td>
+    <td><%= c.confirmation_failure_count %></td>
+    <td><% if c == current_session %> <span class="red">(CURRENT)</span><% end %> <%= link_to 'x', c, :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,11 @@
+
+<p>You are signing in from a device we do not recognise.  You need to confirm this new device.</p>
+
+<p>Please check your email (<%= current_user.email %>) and enter the 5-digit validation code below:</p>
+
+<%= form_for current_session, :url => {:action => :validate} do |f| %>
+  <%= f.text_field :validation_code %>
+  <%= f.submit 'Validate' %>
+<% end %>
+
+<p>This device will be remembered for 30 days.  If you haven't received the validation email you can <%= link_to 'send another one', resend_session_path(current_session) %>.</p>

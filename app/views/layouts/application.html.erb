@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TwoFactor</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if current_user %>
+  <header><%= link_to 'Log out', :finish_sessions, :method => :delete %> &lt;<%= current_user.email %>&gt;</header>
+<% end %>
+
+<%= render :partial => 'flash_messages' %>
+
+<%= yield %>
+
+<footer>Rails Two-Factor Authentication Demo</footer>
+
+</body>
+</html>
