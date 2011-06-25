@@ -84,7 +84,8 @@ class Session < ActiveRecord::Base
     
     # Assigns a time-sensitive random validation key
     def assign_unique_key
-      self.unique_key = rand(10 ** 5).to_s.rjust(5,'0') # zero padded random 5 digits
+      # generate zero padded random 5 digits
+      self.unique_key = ActiveSupport::SecureRandom.random_number(10 **5).to_s.rjust(5,'0')
       self.unique_key_generated_at = Time.now.utc
     end
 end
