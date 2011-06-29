@@ -5,7 +5,7 @@ class Mailer < ActionMailer::Base
     @session = session
     mail(
       :to => session.user.email,
-      :subject => "Confirm Your Session #{session.unique_key}"
+      :subject => "Confirm Your Session"
     )
   end
   

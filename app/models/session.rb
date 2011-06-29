@@ -37,16 +37,16 @@ class Session < ActiveRecord::Base
   end
   
   def validates?
+    return true if self.validation_code == ROTP::TOTP.new(self.user.auth_secret).now.to_s
     return false if self.unique_key_generated_at < (Time.now.utc - 10.minutes)
-    return false unless self.validation_code == self.unique_key
-    return true
+    return self.validation_code == self.unique_key
   end
   
   def send_confirmation_code
     assign_unique_key!
     self.update_attribute :confirmation_failure_count, 0
     # Could also easily do SMS or Automated Voice call here
-    Mailer.session_confirmation(self).deliver
+    # Mailer.session_confirmation(self).deliver
   end
   
   def device

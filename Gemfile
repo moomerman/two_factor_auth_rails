@@ -9,6 +9,7 @@ gem 'uglifier'
 gem 'jquery-rails'
 
 gem 'uuidtools'
+gem 'rotp'
 
 group :test do
   gem 'turn', :require => false
